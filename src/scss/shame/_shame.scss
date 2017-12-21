@@ -1,0 +1,31 @@
+// css 핵처리를 위한 모듈
+// 참고 사이트
+// -> http://browserhacks.com/
+
+// >=ie11
+@mixin hack-ie11($selector) {
+	@at-root _:-ms-fullscreen, :root #{$selector} {
+		@content;
+	}
+} // hack-gte-ie10 보다 우선순위가 낮으므로 같이쓸때 덮어씌움에 주의
+
+// ie10 - ie11
+@mixin hack-ie10($selector) {
+	@at-root _:-ms-input-placeholder, :root #{$selector} {
+		@content;
+	}
+}
+
+// <=ie9
+@mixin hack-ie9($selector) {
+	@at-root html.ie9 #{$selector} {
+		@content;
+    }
+} 
+
+// <=ie8
+@mixin hack-ie8($selector) {
+	@at-root html.ie8 #{$selector} {
+		@content;
+    }
+}

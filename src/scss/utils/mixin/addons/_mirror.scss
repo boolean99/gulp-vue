@@ -1,0 +1,66 @@
+// 좌우 반전 믹스인
+@mixin mirror(
+  $args...
+  ) {
+  $number-value-list: ();
+  $mirror-value-list: (
+    left: right,
+    right: left,
+    ltr: rtl,
+    rtl: ltr,
+    text-align: left
+  );
+
+    @for $i from 1 through length($args) {
+      @if(str-index(nth(nth($args, $i), 1), '-') != null and
+        str-slice(nth(nth($args, $i), 1), 0, (str-index(nth(nth($args, $i), 1), '-') - 1)) == border) {
+          // border 프로퍼티 전용
+          $border-list-value: '';
+
+          @for $j from 2 through length(nth($args, $i)) {
+            $border-list-value: $border-list-value + nth(nth($args, $i), $j) + ' ';
+          }
+
+        #{nth(nth($args, $i), 1)}: unquote($border-list-value);
+      }@else if(type_of(nth(nth($args, $i), 2)) == string) {
+        // value의 데이터 타입이 stirng 임
+        #{nth(nth($args, $i), 1)}: #{nth(nth($args, $i), 2)};
+      }@else if(type_of(nth(nth($args, $i), 2)) == number) {
+        // value의 데이터 타입이 number 임
+        #{nth(nth($args, $i), 1)}: #{nth(nth($args, $i), 2)};
+      }
+    }
+
+    #{$mirror-root} & {
+      @for $i from 1 through length($args) {
+        @if(type_of(nth(nth($args, $i), 2)) == string) {
+          // value의 데이터 타입이 stirng 임
+          #{nth(nth($args, $i), 1)}: map-get($mirror-value-list, nth(nth($args, $i), 2));
+      }@else if(type_of(nth(nth($args, $i), 2)) == number) {
+        // value의 데이터 타입이 number 임
+        @if(str-index(nth(nth($args, $i), 1), '-') != null) {
+          // property에 하이픈(-)이 포함됨
+          #{nth(nth($args, $i), 1)}: 0;
+
+          @if(str-slice(nth(nth($args, $i), 1), 0, (str-index(nth(nth($args, $i), 1), '-') - 1)) == border) {
+            // border property
+            $border-list-value: '';
+
+            @for $j from 2 through length(nth($args, $i)) {
+              $border-list-value: $border-list-value + nth(nth($args, $i), $j) + ' ';
+            }
+
+            #{str-slice(nth(nth($args, $i), 1), 0, (str-index(nth(nth($args, $i), 1), '-'))) + map-get($mirror-value-list, str-slice(nth(nth($args, $i), 1), (str-index(nth(nth($args, $i), 1), '-') + 1)))}: unquote($border-list-value);
+          }@else {
+            // border 외의 property
+            #{str-slice(nth(nth($args, $i), 1), 0, str-index(nth(nth($args, $i), 1), '-')) + map-get($mirror-value-list, str-slice(#{nth(nth($args, $i), 1)}, (str-index(nth(nth($args, $i), 1), '-') + 1)))}: nth(nth($args, $i), 2);
+          }
+        }@else {
+          // property에 하이픈(-)이 포함되지 않음
+          #{map-get($mirror-value-list, nth(nth($args, $i), 1))}: nth(nth($args, $i), 2);
+          #{nth(nth($args, $i), 1)}: auto;
+        }
+      }
+    }
+  }
+}

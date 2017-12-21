@@ -1,0 +1,25 @@
+// bem 작명기법으로 작업된 페이지의 마크업 구조를 셀렉트 해주는 믹스인
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+@mixin modifier($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+// 단축 믹스인
+@mixin e($element) {
+  @include element($element)  {
+    @content;
+  }
+}
+
+@mixin m($modifier) {
+  @include modifier($modifier) {
+    @content;
+  }
+}

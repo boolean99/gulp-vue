@@ -1,0 +1,23 @@
+@if($mirror-use == true) {
+  #mirror {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    z-index: 100;
+    cursor: pointer;
+
+    @if($fa-use == true) {
+      @include fa-init("\f021");
+    }@else if($material-use == true) {
+      @extend %material-icons;
+
+      &::before {
+        content: 'developer_mode';
+      }
+    }
+
+    &::before {
+      font-size: 40px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+// border mixin 설명
+@mixin breaking-help() {
+    @error 
+    "
+        /*---------------------*\
+
+              breaking mixin
+                사용 설명
+        \*---------------------*/
+        breaking mixin
+        @param = {
+          $point,
+          $range: over, below
+        }
+        @property = {
+          @media all and ($point) { ... }
+        }
+        @description = {
+          미디어쿼리문 작성을 도와주는 믹스인 입니다
+          첫번째 매개변수인 $point에는 $bp 전역변수를 전달하면 되고
+          두번째 변수로는 below, over 값이 가능하며 각각
+          ~이하(max-width), ~이상(min-width)를 뜻하며
+          반드시 필요한 값입니다.
+          ~이상 ~이하의 범위를 사용할때는 첫번째 인자를 배열로 묶어
+          두 변수를 전달합니다. 이때 두번째 인자는 생략합니다.
+          ex)
+          @include breaking(($bp600, $bp1020)) { ... }
+          @include breaking($bp480, over) { ... }
+          @include breaking($bp480, below) { ... }
+        }
+    ";
+}

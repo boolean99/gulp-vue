@@ -1,0 +1,38 @@
+@mixin noscript {
+  noscript {
+    text-align: center;
+    box-shadow: 2px 2px 5px #ddd;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    opacity: 0.8;
+    animation: hide-noscript 3s 7s;
+    animation-fill-mode: both;
+
+    @include vertical-rythme(1.2em, 1.5em);
+    @include center(true, true);
+
+    &::after {
+      content: '5초 후에 사라집니다.';
+      display: inline-block;
+      animation: count-down 5s 2s;
+      animation-fill-mode: both;
+    }
+  }
+  
+  @keyframes hide-noscript {
+    0% { opacity: 1; }
+    20% { opacity: 0; }
+    100% {
+      top: -100vh;
+    }
+  }
+  
+  @keyframes count-down {
+    0% {   content: '5초 후에 사라집니다.'; }
+    20% {  content: '4초 후에 사라집니다.'; }
+    40% {  content: '3초 후에 사라집니다.'; }
+    60% {  content: '2초 후에 사라집니다.'; }
+    80% {  content: '1초 후에 사라집니다.'; }
+    100% { content: '0초 후에 사라집니다.'; }
+  }
+}

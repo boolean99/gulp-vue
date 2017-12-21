@@ -1,0 +1,19 @@
+// mirror mixin 설명
+@mixin mirror-help () {
+    @error 
+    "
+        /*---------------------*\
+
+          	  mirror minxin
+                사용 설명
+        \*---------------------*/
+        mirror css mixin
+        @param = {
+            float, margin, padding, text-align
+        }
+        @description = {
+            프로퍼티 의 좌우 값을 반전시켜주는 믹스인입니다.
+			@include mirror(float left, text-align left, border-right 5px solid green);
+        }
+    ";
+}

@@ -1,0 +1,50 @@
+// 11개국어 폰트 설정 믹스인
+@mixin multilingual {
+  %common-font-family1 {
+    font-family: tahoma, Geneva, sans-serif;
+  }
+
+  html {
+    @if(type_of($selected-lang) == 'string') {
+      @each $lang in $selected-lang {
+        &[lang="#{$lang}"] {
+          body, input, textarea, select, button, table {
+            @if($lang == 'En' or $lang == 'FR' or $lang == 'DE'
+              or $lang == 'ID' or $lang == 'RU' or $lang == 'ES'
+              or $lang == 'VI') {
+              @extend %common-font-family1;
+            }@else if($lang == 'ar') {
+              font-family: Arial, Arabic Transparent, Tahoma, Geneva, sans-serif;
+            }@else if($lang == 'ZH') {
+              font-family: "微软雅黑", STXihei, Tahoma, sans-serif;
+            }@else if($lang == 'JA') {
+              font-family: Meiryo, tahoma, sans-serif;
+            }@else if($lang == 'KO') {
+              font-family: Malgun Gothic, 맑은고딕, 맑은 고딕,tahoma, Geneva, sans-serif;
+            }
+          }
+        }
+      }
+    }@else if(type_of($selected-lang) == 'list') {
+      @each $lang in $multilingual {
+        &[lang="#{$lang}"] {
+          body, input, textarea, select, button, table {
+            @if($lang == 'En' or $lang == 'FR' or $lang == 'DE'
+              or $lang == 'ID' or $lang == 'RU' or $lang == 'ES'
+              or $lang == 'VI') {
+              @extend %common-font-family1;
+            }@else if($lang == 'ar') {
+              font-family: Arial, Arabic Transparent, Tahoma, Geneva, sans-serif;
+            }@else if($lang == 'ZH') {
+              font-family: "微软雅黑", STXihei, Tahoma, sans-serif;
+            }@else if($lang == 'JA') {
+              font-family: Meiryo, tahoma, sans-serif;
+            }@else if($lang == 'KO') {
+              font-family: Malgun Gothic, 맑은고딕, 맑은 고딕,tahoma, Geneva, sans-serif;
+            }
+          }
+        }
+      }
+    }
+  }
+}

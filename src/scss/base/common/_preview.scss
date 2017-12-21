@@ -1,0 +1,100 @@
+@import "../../utils/mixin/addons/fa-init";
+
+// 프리뷰
+@if $layout-preview == true {
+  #preview {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 100;
+    cursor: pointer;
+
+    @if($fa-use == true) {
+      @include fa-init("\f03e");
+    }@else if($fa-use == false && $material-use == true) {
+      @extend %material-icons;
+
+      &::before {
+        content: 'wallpaper';
+      }
+    }
+
+    &::before {
+      font-size: 40px;
+    }
+
+    @if $preview-fixed {
+      &.js-preview--hide {
+          &::before {
+            color: red;
+          }
+
+        & + img {
+          content: url('#{$preview-url}');
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          opacity: $preview-opacity;
+          transform: translateX(-50%);
+          z-index: 99;
+
+          @if $available-m == true {
+            @include breaking($breaking-point-only-m) {
+              content: url('#{$preview-url-m}');
+            }
+          }
+
+          @if $available-s == true {
+            @include breaking($breaking-point-s) {
+              position: absolute;
+              left: 0;
+              top: 0;
+              right: 0;
+              transform: none;
+              width: 100%;
+              content: url('#{$preview-url-s}');
+            }
+          }
+        }
+      }
+    }@else {
+      &.js-preview--show {
+        &::before {
+            color: red;
+        }
+
+        & + img {
+          content: url('#{$preview-url}');
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          opacity: $preview-opacity;
+          transform: translateX(-50%);
+          z-index: 99;
+
+          @if $available-m == true {
+            @include breaking($breaking-point-only-m) {
+                content: url('#{$preview-url-m}');
+            }
+          }
+
+          @if $available-s == true {
+            @include breaking($breaking-point-s) {
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                transform: none;
+                width: 100%;
+
+                content: url('#{$preview-url-s}');
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

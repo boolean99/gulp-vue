@@ -1,0 +1,31 @@
+// isolate mixin 설명
+@mixin isolate-help () {
+    @error 
+    "
+        /*---------------------*\
+
+              isolate minxin
+                사용 설명
+        \*---------------------*/
+        isolate css mixin
+        @param = {
+            $size
+            $left
+            $top
+        }
+        @property = {
+          margin-right: -100%;
+          margin-left: calc($width * $left);
+          margin-top: calc($width * $top);
+          float: left;
+        }
+        @description = {
+            floating 방식중 isolate를 지원합니다.
+            너비와 높이가 같은 정사각형을 사용하고있다면 $width 변수에 너비값만 넘겨주며
+            직사각형의 경우 () 리스트의 형태로 너비와 높이를 넘겨줍니다.
+            $left 와 $top의 경우엔 좌측상단 꼭지점을 기준으로 1,1 부터 시작합니다.
+            ex) @include isolate((300px, 100px), 1, 1);
+                @include isolate(300px, 2, 1);
+        }
+    ";
+}

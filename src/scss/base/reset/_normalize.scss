@@ -1,0 +1,397 @@
+@import '../../utils/mixin/addons/fa-init';
+
+@if $css-reset == true {
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed, 
+  figure, figcaption, footer, header, hgroup, 
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+
+    @if $default-font-family == true {
+      font-family: $font-family;
+    }
+
+    @if $iphone-scroll == true {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    line-height: 1;
+  }
+
+  article,aside,details,figcaption,figure,footer
+  ,header,hgroup,main,menu,nav,section,summary {
+    display: block;
+  }
+
+  ol, ul, nav {
+    list-style: none;
+  }
+
+  blockquote, q {
+    quotes: none;
+  }
+
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+
+  audio,
+  canvas,
+  progress,
+  video {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+
+  audio:not([controls]) {
+    display: none;
+    height: 0;
+  }
+
+  [hidden],
+  template {
+    display: none;
+  }
+
+  a {
+    background-color: transparent;
+    color: #000;
+    text-decoration: none;
+  }
+
+  a:active,
+  a:hover {
+    outline: 0;
+  }
+
+  abbr[title] {
+    border-bottom: 1px dotted;
+  }
+
+  b,
+  strong {
+    font-weight: bold;
+  }
+
+  dfn {
+    font-style: italic;
+  }
+
+  mark {
+    background: #ff0;
+    color: #000;
+  }
+
+  small {
+    font-size: 80%;
+  }
+
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  img {
+    vertical-align: bottom;
+    border: 0;
+  }
+
+  svg:not(:root) {
+    overflow: hidden;
+  }
+
+  hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+  }
+
+  pre {
+    overflow: auto;
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: monospace, monospace;
+  }
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+  }
+
+  option, select {
+    @if $input-css-reset == true {
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  input, textarea {
+    @if $input-css-reset == true {
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  input, textarea, select, option {
+    @if $input-css-reset == true {
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      border: none;
+      padding: 0;
+    }
+  }
+
+  button {
+    overflow: visible;
+
+    @if $input-css-reset == true {
+      border: none;
+      background: #fff;
+    }
+  }
+
+  button,
+  select {
+    text-transform: none;
+
+    @if $input-css-reset == true {
+      background: #fff;
+      border: none;
+      padding: 0;
+    }
+  }
+
+  input[type="submit"] {
+    @if $input-css-reset == true {
+      background: #fff;
+      border: none;
+      padding: 0;
+    }
+  }
+
+  button,
+  html input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+  }
+
+  button[disabled],
+  html input[disabled] {
+    cursor: default;
+  }
+
+  button::-moz-focus-inner,
+  input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  input {
+    line-height: normal;
+  }
+
+  input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+
+      @if $input-css-reset == true {
+        width: $checkbox-radio-size;
+        height: $checkbox-radio-size;
+        background: #fff;
+        position: relative;
+
+          @if $cross-browsing == true {
+            &:checked:before {
+              content:" ";
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              margin-left: -(($checkbox-radio-size / 3) / 2);
+              margin-top: -(($checkbox-radio-size / 3) / 2);
+              display: inline-block;
+              width: $checkbox-radio-size / 3;
+              height: $checkbox-radio-size / 3;
+              background: $checkbox-radio-checked-color;
+              border-radius: 50%;
+            }
+          }@else {
+            &:checked::before {
+              content:" ";
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              display: inline-block;
+              width: $checkbox-radio-size / 3;
+              height: $checkbox-radio-size / 3;
+              background: $checkbox-radio-checked-color;
+              border-radius: 50%;
+            }
+          }
+      }
+  }
+
+  input[type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+
+      @if $input-css-reset == true {
+        width: $checkbox-radio-size;
+        height: $checkbox-radio-size;
+        background: #fff;
+        position: relative;
+
+          @if $fa-use == true {
+            @if $cross-browsing == true {
+              &:checked {
+                @include fa-init("\f00c");
+
+                &:before {
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  display: inline-block;
+                  margin-left: -7px;
+                  margin-top: -8px;
+                  color: $checkbox-radio-checked-color;
+                }
+              }
+            }@else {
+              &:checked {
+                @include fa-init("\f00c");
+
+                &:before {
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  transform: translate(-50%, -50%);
+                  display: inline-block;
+                  color: $checkbox-radio-checked-color;
+                }
+              }
+            }
+          }@else {
+            @if $cross-browsing == true {
+              &:checked:before {
+                content:" ";
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -(($checkbox-radio-size / 3) / 2);
+                margin-top: -(($checkbox-radio-size / 3) / 2);
+                display: inline-block;
+                width: $checkbox-radio-size / 3;
+                height: $checkbox-radio-size / 3;
+                background: $checkbox-radio-checked-color;
+                border-radius: 50%;
+              }
+            }@else {
+              &:checked::before {
+                content:" ";
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: inline-block;
+                width: $checkbox-radio-size / 3;
+                height: $checkbox-radio-size / 3;
+                background: $checkbox-radio-checked-color;
+                border-radius: 50%;
+              }
+            }
+          }
+      }
+  }
+
+  input[type="radio"] {
+    @if $input-css-reset == true {
+      border-radius: 50%;
+    }
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+  }
+
+  input[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  textarea {
+    overflow: auto;
+  }
+
+  optgroup {
+    font-weight: bold;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button, 
+    input[type="number"]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+}

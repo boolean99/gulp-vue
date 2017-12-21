@@ -1,0 +1,45 @@
+// -------------
+// 페이지 세팅
+// -------------
+@if ($skip-navi == true) {
+  @include skip-navigation;
+}
+
+@include multilingual;
+
+@if ($css-reset == true) {
+  @include box-sizing;
+
+  body {
+    @include vertical-rythme($global-font-size);
+  }
+// 이 두개의 Mixin은 페이지 전역에 영향을 끼치는 css를 추가하기때문에
+// css 초기화 설정 전역변수의 영향을 받도록 설정중
+}
+
+@if ($orientation == false) {
+  html {
+    @include orientation-lock;
+  }
+}
+
+@if($scrollbar == false) {
+  .fragment--contents, .contents--article, .fragment--intro {
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: tint($main-color, 90%);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: tint($main-color, 50%);
+      border-radius: 4px;
+    }    
+  }
+}
+
+@if ($noscript == true) {
+  @include noscript;  
+}

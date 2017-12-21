@@ -1,0 +1,8 @@
+// 기본값이 border-box인 box-sizing 전역 설정 믹스인
+@mixin box-sizing(
+    $value: border-box
+  ) {
+    *, *::before, *::after {
+        box-sizing: $value;
+    }
+}

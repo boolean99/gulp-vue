@@ -1,0 +1,27 @@
+// size mixin 설명
+@mixin size-help () {
+    @error 
+    "
+        /*---------------------*\
+
+              size minxin
+                사용 설명
+        \*---------------------*/
+        size css mixin
+        @param = {
+            $width,
+            $height
+        }
+        @property = {
+            width,
+            height
+        }
+        @description = {
+            width 값과 height값을 하나의 믹스인으로 동시에
+            정의합니다. 매개변수 형태로는 세가지로 줄수있습니다
+            ex_1) size(2px); => width: 2px; height: 2px;
+            ex_2) size(2px 5px); => width: 2px; heght: 5px;
+            ex_3) size(2px, 5px); => width: 2px; heght: 5px;
+        }
+    ";
+}

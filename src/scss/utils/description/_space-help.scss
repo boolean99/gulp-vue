@@ -1,0 +1,32 @@
+// space mixin 설명
+@mixin space-help () {
+    @error 
+    "
+        /*---------------------*\
+
+              space minxin
+                사용 설명
+        \*---------------------*/
+        space css mixin
+        @param = {
+            ($margin || $padding,
+            $margin-top,
+            $margin-right,
+            $margin-bottom,
+            $margin-left)
+        }
+        @property = {
+            (margin or padding)-top,
+            (margin or padding)-right,
+            (margin or padding)-bottom,
+            (margin or padding)-left
+        }
+        @description = {
+            margin과 padding 상하좌우 값을 각기 다르게 정의하기위해 사용되며
+            매개변수의 타입은 리스트 형태로 받고 마진과 패딩을 동시에
+            적용시에는 구분자로 컴마(,)를 사용하며
+            (마진/패딩 상, 우, 하, 좌) 순서로 정의합니다
+            ex) space(margin 2px 7px 1px 4px, padding 1em 4em 2em 5em);
+        }
+    ";
+}

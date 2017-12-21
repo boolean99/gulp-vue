@@ -1,0 +1,31 @@
+// placeholder-transition mixin 설명
+@mixin transition-addition-help() {
+    @error 
+    "
+        /*---------------------*\
+	   transition-addition mixin
+                사용 설명
+        \*---------------------*/
+         transition-addition mixin
+        @param = {
+          (
+            $property,
+            $duration,
+            $t-function: ease-out-cubic;
+          )
+        }
+        @property = {
+          transition-property: $property;
+          transition-duration: $duration;
+          transition-timing-function: $t-function;
+        }
+        @description = {
+          플레이스홀더를 활용한 트렌지션 믹스인 입니다.
+          타이밍펑션의 기본값이 ease-out-cubic으로 설정되어 있고
+          duration은 0.1 부터 1.6 값 까지 가능합니다
+          
+            ex) @include transition_addition('all', 1, 'ease-in-cubic');
+            ex) @include transition_addition('all', 0.5);
+        }
+    ";
+}

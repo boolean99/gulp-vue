@@ -1,0 +1,30 @@
+// border mixin 설명
+@mixin border-help() {
+    @error 
+    "
+        /*---------------------*\
+
+              border mixin
+                사용 설명
+        \*---------------------*/
+        border mixin
+        @param = {
+            ($border-direction,
+            $border-width,
+            $border-style,
+            $border-color)
+        }
+        @property = {
+            border-(direction),
+            border-(direction),
+            border-(direction)
+        }
+        @description = {
+            상하좌우의 border값을 각기 다른 스타일로 정의하고자
+            할때 사용됩니다 매개변수의 타입은 리스트 형태로 받고 있으며
+            각각의 방향은 구분자로 컴마(,)를 사용하며
+            (방향, 두께, 스타일, 색상) 순서로 정의합니다
+            ex) @include border(top 1px solid pink, bottom 7px dashed blue);
+        }
+    ";
+}

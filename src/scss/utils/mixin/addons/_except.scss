@@ -1,0 +1,72 @@
+// 특정 아이템만 css를 해제해 주는 역할의 믹스인
+@mixin except(
+    $property,
+    $nth
+  ) {
+    $value-0: ('margin-right', 'margin-left', 'margin-bottom', 'margin-top', 'margin', 'padding-right', 'padding-left', 'padding-bottom', 'padding-top', 'padding', 'right', 'left', 'bottom', 'top');
+    $value-none: ('float', 'clear');
+    
+    @if(length($property) <= 1) {
+      @if(index($value-0, $property) != null) {
+        @if($nth == 'first') {
+          &:first-of-type {
+            #{$property}: 0;
+          }
+        }@else if($nth == 'last') {
+          &:last-of-type {
+            #{$property}: 0;
+          }
+        }@else {
+          &:nth-of-type(#{$nth}) {
+            #{$property}: 0;
+          }
+        }
+      }@else {
+        @if($nth == 'first') {
+          &:first-of-type {
+            #{$property}: none;
+          }
+        }@else if($nth == 'last') {
+          &:last-of-type {
+            #{$property}: none;
+          }
+        }@else {
+          &:nth-of-type(#{$nth}) {
+            #{$property}: none;
+          }
+        }
+      }
+    }@else {
+      @for $i from 1 through length($property) {
+        @if(index($value-0, nth($property, $i)) != null) {
+          @if($nth == 'first') {
+            &:first-of-type {
+              #{nth($property, $i)}: 0;
+            }
+          }@else if($nth == 'last') {
+            &:last-of-type {
+              #{nth($property, $i)}: 0;
+            }
+          }@else {
+            &:nth-of-type(#{$nth}) {
+              #{nth($property, $i)}: 0;
+            }
+          }
+        }@else {
+          @if($nth == 'first') {
+            &:first-of-type {
+              #{nth($property, $i)}: none;
+            }
+          }@else if($nth == 'last') {
+            &:last-of-type {
+              #{nth($property, $i)}: none;
+            }
+          }@else {
+            &:nth-of-type(#{$nth}) {
+              #{nth($property, $i)}: none;
+            }
+          }
+        }
+      }
+    }
+}

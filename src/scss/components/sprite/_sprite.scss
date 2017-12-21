@@ -1,0 +1,134 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$kakaokaka-name: 'kakaokaka';
+$kakaokaka-x: 605px;
+$kakaokaka-y: 0px;
+$kakaokaka-offset-x: -605px;
+$kakaokaka-offset-y: 0px;
+$kakaokaka-width: 500px;
+$kakaokaka-height: 500px;
+$kakaokaka-total-width: 1105px;
+$kakaokaka-total-height: 845px;
+$kakaokaka-image: '/images/room_chat_sprite.png';
+$kakaokaka: (605px, 0px, -605px, 0px, 500px, 500px, 1105px, 845px, '/images/room_chat_sprite.png', 'kakaokaka', );
+$kako-name: 'kako';
+$kako-x: 245px;
+$kako-y: 605px;
+$kako-offset-x: -245px;
+$kako-offset-y: -605px;
+$kako-width: 234px;
+$kako-height: 234px;
+$kako-total-width: 1105px;
+$kako-total-height: 845px;
+$kako-image: '/images/room_chat_sprite.png';
+$kako: (245px, 605px, -245px, -605px, 234px, 234px, 1105px, 845px, '/images/room_chat_sprite.png', 'kako', );
+$sfsdfsdf-name: 'sfsdfsdf';
+$sfsdfsdf-x: 0px;
+$sfsdfsdf-y: 605px;
+$sfsdfsdf-offset-x: 0px;
+$sfsdfsdf-offset-y: -605px;
+$sfsdfsdf-width: 240px;
+$sfsdfsdf-height: 240px;
+$sfsdfsdf-total-width: 1105px;
+$sfsdfsdf-total-height: 845px;
+$sfsdfsdf-image: '/images/room_chat_sprite.png';
+$sfsdfsdf: (0px, 605px, 0px, -605px, 240px, 240px, 1105px, 845px, '/images/room_chat_sprite.png', 'sfsdfsdf', );
+$sssss-name: 'sssss';
+$sssss-x: 484px;
+$sssss-y: 605px;
+$sssss-offset-x: -484px;
+$sssss-offset-y: -605px;
+$sssss-width: 234px;
+$sssss-height: 234px;
+$sssss-total-width: 1105px;
+$sssss-total-height: 845px;
+$sssss-image: '/images/room_chat_sprite.png';
+$sssss: (484px, 605px, -484px, -605px, 234px, 234px, 1105px, 845px, '/images/room_chat_sprite.png', 'sssss', );
+$wow-name: 'wow';
+$wow-x: 0px;
+$wow-y: 0px;
+$wow-offset-x: 0px;
+$wow-offset-y: 0px;
+$wow-width: 600px;
+$wow-height: 600px;
+$wow-total-width: 1105px;
+$wow-total-height: 845px;
+$wow-image: '/images/room_chat_sprite.png';
+$wow: (0px, 0px, 0px, 0px, 600px, 600px, 1105px, 845px, '/images/room_chat_sprite.png', 'wow', );
+$spritesheet-width: 1105px;
+$spritesheet-height: 845px;
+$spritesheet-image: '/images/room_chat_sprite.png';
+$spritesheet-sprites: ($kakaokaka, $kako, $sfsdfsdf, $sssss, $wow, );
+$spritesheet: (1105px, 845px, '/images/room_chat_sprite.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

@@ -1,0 +1,21 @@
+// isolate floating 믹스인
+@mixin isolate(
+    $size,
+    $left,
+    $top
+  ) {
+    $_left: $left - 1;
+    $_top: $top - 1;
+    
+    margin-right: -100%;
+    
+    @if(type_of($size) == 'list') {
+      margin-left: calc(#{nth($size, 1)} * #{$_left});
+      margin-top: calc(#{nth($size, 2)} * #{$_top});
+    }@else {
+      margin-left: calc(#{$size} * #{$_left});
+      margin-top: calc(#{$size} * #{$_top});
+    }
+    
+    @extend %fl;
+}

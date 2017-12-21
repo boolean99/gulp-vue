@@ -1,0 +1,9 @@
+// color 와 background-color를 함께 선언하는 믹스인
+
+@mixin color-both(
+    $color,
+    $backgroundColor
+  ) {
+    color: $color;
+    background-color: $backgroundColor;
+}

@@ -1,0 +1,17 @@
+// 엘리먼트의 위치를 상대값으로 옮겨주는 믹스인
+@mixin push(
+    $dir,
+    $distance
+  ) {
+    position: relative;
+    
+    @if($dir == 'left') {
+      left: -$distance;
+    }@else if($dir == 'right') {
+      left: $distance;
+    }@else if($dir == 'bottom') {
+      top: $distance;
+    }@else if($dir == 'top') {
+      top: -$distance;
+    }
+}

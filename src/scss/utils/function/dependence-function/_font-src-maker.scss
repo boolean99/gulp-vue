@@ -1,0 +1,26 @@
+// font-face 믹스인 호출시 src 프로퍼티의 value 값을 리턴
+
+@function font-src-maker(
+    $font-family,
+    $file-path,
+    $file-formats
+  ) {
+
+  $src: ();
+
+  $formats-map: (
+    eot:   "#{$file-path + $font-family}.eot?#iefix" format('embedded-opentype'),
+    woff2: "#{$file-path + $font-family}.woff2" format('woff2'),
+    woff:  "#{$file-path + $font-family}.woff" format("woff"),
+    ttf:   "#{$file-path + $font-family}.ttf" format("truetype"),
+    otf:   "#{$file-path + $font-family}.otf" format("opentype"),
+    svg:   "#{$file-path + $font-family}.svg##{$font-family}" format("svg")
+  );
+    
+    @each $key in $file-formats {
+      $_file-path: map-get($formats-map, $key);
+      $src: append($src, url("#{nth(map-get($formats-map, $key), 1)}") nth(map-get($formats-map, $key), 2), comma);
+    }
+    
+  @return $src;
+}

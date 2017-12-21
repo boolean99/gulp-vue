@@ -1,0 +1,5 @@
+// 단위 제거 ex) 1px - > 1
+
+@function unit-elimination($value) {
+  @return ($value / ($value * 0 + 1));
+}

@@ -1,0 +1,33 @@
+// triangle mixin 설명
+@mixin triangle-help () {
+    @error 
+    "
+        /*---------------------*\
+
+            triangle minxin
+                사용 설명
+        \*---------------------*/
+        triangle css mixin
+        @param = {
+            $size,
+            $color,
+            $direction
+        }
+        @property = {
+            height: 0;
+            width: 0;
+            border-left: ...;
+            border-right: ...;
+            border-top: ...;
+        }
+        @description = {
+            첫번째 매개변수 $size에는 삼각형의 크기를 받습니다. 넘기는 값의 갯수에 따라 삼각형의 모양이 결정됩니다.
+            두번째 매개변수 $color에는 하나의 값을 넘겨 일반삼각형을 만들수도, 두값을 넘겨 배경이 있는 삼각형을
+            만들수도 있습니다.
+            세번째 매개변수 $direction에는 삼각형의 꼭지점이 향할 방향을 결정하는데,
+            up, down, right, left, up-right, up-left, down-left, down-right 의 값을 받을수 있습니다.
+            ex) @include triangle(60px 15px, blue, up);
+            ex) @include triangle(40px, green, down-left);
+        }
+    ";
+}

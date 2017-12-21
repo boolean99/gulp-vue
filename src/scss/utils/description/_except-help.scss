@@ -1,0 +1,31 @@
+// except mixin 설명
+@mixin except-help() {
+    @error 
+    "
+        /*---------------------*\
+
+              except mixin
+                사용 설명
+        \*---------------------*/
+        except mixin
+        @param = {
+            $property,
+            $nth
+        }
+        @property = {
+          top: 0;
+          margin-bottom: 0;
+          float: none;
+          clear: none; ...
+        }
+        @description = {
+          N번째 순서의 요소에 특정 CSS를 해제시켜주는 믹스인 입니다.
+          첫번째 매개변수로는 해제시키고자 하는 css명을,
+          두번째 매개변수로는 요소의 순서를 넘겨줍니다.
+          숫자를 사용해도 좋으나 첫번째와 마지막은 first, last
+          키워드를 지원합니다.
+            ex) @include except(margin-left, last);
+                @include except(clear float border-bottom, 3);
+        }
+    ";
+}

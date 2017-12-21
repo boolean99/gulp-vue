@@ -1,0 +1,12 @@
+// 트렌지션 믹스인의 개별 css를 플레이스홀더로 묶어서 컴파일 할수있는 믹스인
+// 트렌지션 플레이스홀더 모듈 선 호출
+
+@mixin transition_addition(
+    $property, 
+    $duration,
+    $t-function: ease-out-cubic
+  ) {
+    @extend %transition_#{$property};
+    @extend %transition_duration_#{decimal-to-underbar($duration)};
+    @extend %transition_timing_function_#{$t-function};
+}

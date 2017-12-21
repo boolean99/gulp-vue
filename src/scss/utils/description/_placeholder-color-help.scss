@@ -1,0 +1,22 @@
+// placeholder-color mixin 설명
+@mixin placeholder-color-help () {
+    @error 
+    "
+        /*---------------------*\
+
+            placeholder-color minxin
+                사용 설명
+        \*---------------------*/
+        placeholder-color css mixin
+        @param = {
+            ($color)
+        }
+        @property = {
+            color
+        }
+        @description = {
+            input, textarea의 placeholder 색상을 변경합니다.
+            ex) @include placeholder(green);
+        }
+    ";
+}

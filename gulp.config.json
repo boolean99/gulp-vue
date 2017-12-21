@@ -1,0 +1,17 @@
+{
+  "DISTRIBUTION": false,
+  "DIRECTION": {
+    "SRC": "src",
+    "DIST": "dist",
+    "SCSS": "/scss",
+    "WEBPACK": "/webpack",
+    "IMAGE": "/images"
+  },
+  "SPRITE": {
+    "FILENAME": "room_chat_sprite.png",
+    "DISTFILENAME": "room_chat_sprite.png"
+  },
+  "WEBPACK": {
+    "FILENAME": "main"
+  }
+}

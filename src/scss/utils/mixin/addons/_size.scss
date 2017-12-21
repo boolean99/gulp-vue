@@ -1,0 +1,29 @@
+// width, height 단축 정의 믹스인
+@mixin size($value...) {
+  $width: null !default;
+  $height: null !default;
+  $value-type: type_of(nth($value, 1));
+	
+  @if $value-type == string {
+    $width: nth($value, 1);
+    $height: nth($value, 2);
+  }
+    
+  @if $value-type == number {
+    
+    @if length($value) == 1 {
+      $width: nth(nth($value, 1), 1);
+      $height: $width;
+    }@else if length($value) == 2 {
+      $width: nth($value, 1);
+      $height: nth($value, 2);
+    }
+    
+  }@else if $value-type == list {
+    $width: nth(nth($value, 1), 1);
+    $height: nth(nth($value, 1), 2);
+  }
+
+    width: $width;
+    height: $height;
+}

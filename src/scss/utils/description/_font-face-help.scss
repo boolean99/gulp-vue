@@ -1,0 +1,30 @@
+// font-face mixin 설명
+@mixin font-face-help () {
+    @error 
+    "
+        /*---------------------*\
+
+            font-face minxin
+                사용 설명
+        \*---------------------*/
+        font-face css mixin
+        @param = {
+            $font-family,
+            $weight         !default : normal,
+            $font-style     !default : normal,
+            $file-formats   !default : ttf
+        }
+        @property = {
+            font-family,
+            font-style,
+            font-weight,
+            src
+        }
+        @description = {
+            첫번째 매개변수에 확장자를 제외한 폰트 파일명을 입력합니다.
+            ex) @include font-face('segoesc', $file-formats: eot ttf woff);
+            $file-formats 매개변수의 값으로 eot, woff2, woff, ttf, svg 를 줄수 있습니다
+		    ex) @include font-face('Vollkorn-Italic', $font-style: italic, $file-formats: eot ttf woff);
+        }
+    ";
+}

@@ -1,0 +1,17 @@
+@mixin hover-transition(
+    $origin-color:        #000,
+    $hover-color:         #fff,
+    $in-duration:         0.4s,
+    $out-duration:        $in-duration,
+    $in-timing-function:  $ease-in-cubic,
+    $out-timing-function: $ease-out-cubic
+  ) {
+    
+    color: $origin-color;
+    transition: all $in-duration $in-timing-function;
+
+    &:hover {
+      color: $hover-color;
+      transition: all $out-duration $out-timing-function;
+    }
+}

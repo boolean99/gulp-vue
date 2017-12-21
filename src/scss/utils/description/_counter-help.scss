@@ -1,0 +1,29 @@
+// counter mixin 설명
+@mixin counter-help () {
+    @error 
+    "
+        /*---------------------*\
+
+              counter minxin
+                사용 설명
+        \*---------------------*/
+        counter css mixin
+        @param = {
+            $depth !default : false
+            $content:         null
+        }
+        @property = {
+          counter-reset: list;
+
+          counter-increment: list;
+          content: counter(list);
+        }
+        @description = {
+          엘리먼트의 숫자를 카운트 해주는 css 조합 믹스인 입니다
+          숫자를 세려는 엘리먼트를 감싸고 있는 부모 엘리먼트 블록에서
+          호출 해야 하며, 첫째 매개변수로 true 값을 주면 중첩카운트 형식으로 반환한다, 둘째 매개변수에 문자열을 전달하면 카운터와 엘리먼트의 텍스트노드 사이의 내용을 정의할수 있다.
+          ex) @include counter(false, '_ : ');
+              @include counter(true, '_ : ');
+        }
+  ";
+}

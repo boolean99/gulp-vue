@@ -1,0 +1,26 @@
+// push mixin 설명
+@mixin push-help () {
+    @error 
+    "
+        /*---------------------*\
+
+              push minxin
+                사용 설명
+        \*---------------------*/
+        push css mixin
+        @param = {
+            $dir,
+            $distance
+        }
+        @property = {
+          position: relative;
+          top: $distance;
+        }
+        @description = {
+            돔 엘리먼트를 상대적인 위치로 두번째 매개변수의 크기만큼 이동시킵니다.
+            첫번째 매개변수에는 밀어줄 방향을 정의하며
+            top, right, bottom, left 를 사용할 수 있습니다.
+            ex) @include push(bottom, 150px);
+        }
+    ";
+}

@@ -1,0 +1,36 @@
+// responsive-youtube mixin 설명
+@mixin responsive-youtube-help () {
+    @error 
+    "
+        /*---------------------*\
+
+        responsive-youtube minxin
+                사용 설명
+        \*---------------------*/
+        responsive-youtube css mixin
+        @param = {
+            $padding-bottom: 56.25%;
+        }
+        @property = {
+          float: left;
+          position: relative;
+          overflow: hidden;
+          padding-top: 30px;
+          padding-bottom: $padding-bottom;
+          width: 100%;
+          height: 0;
+
+          & > iframe {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
+        @description = {
+          유튜브 영상을 페이지에 포함시킬때 반응형으로 만들기 위한 믹스인이며 padding-bottom에 의해 높이값이 결정되므로 매개변수로 그 값을 받을수 있다 기본값은 56.25% 사용하고있기때문에 필요에 의해 수정할수있다. 한가지 주의할점은 youtube iframe을 포함하는 부모객체에 사용해야 한다.
+          ex) @include responsive-youtube(10%);
+        }
+  ";
+}

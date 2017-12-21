@@ -1,0 +1,81 @@
+// -------------
+// 변수의 데이터 타입을 변환
+// -------------
+
+// 숫자를 문자열로 변환
+@function number-to-string($value) {
+	@return inspect($value);
+}
+
+// 숫자를 문자열로 변환하는 함수 단축함수명
+@function n-t-s($value) {
+	@return number-to-string($value);
+}
+
+// 문자열을 숫자로 변환
+@function string-to-number($value) {
+	$strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9' '10'
+		'11' '12' '13' '14' '15' '16' '17' '18' '19' '20';
+	$numbers:  0   1   2   3   4   5   6   7   8   9 10
+		11 12 13 14 15 16 17 18 19 20;
+	$result: 0;
+	$minus: false;
+	$float: false;
+	$float-depth: 1;
+	$first-letter: str-slice($value, 0, 1);
+	
+	@if($first-letter == '-') {
+		// 음수
+		$minus: true;
+		@if(str-slice($value, 2, 2) == '0') {
+			// 음수 소수점
+			$float: true;
+			$float-depth: str-index($value, '.');
+			$first-letter: str-slice($value, 4);
+		}@else {
+			$first-letter: str-slice($value, 2);
+		}
+	}@else {
+		// 양수
+		@if(str-length($value) > 1) {
+			@if($first-letter == '0') {
+				// 소수점
+				$float: true;
+				$float-depth: str-index($value, '.');
+				$first-letter: str-slice($value, 3);
+			}@else {
+				$first-letter: str-slice($value, 1);
+			}
+		}
+	}
+	
+	$index: index($strings, $first-letter);
+	$number: nth($numbers, $index);
+	$result: $result * 10 + $number;
+	
+	@if($minus == true and $float == true) {
+		$float-string-length: str-length($value) - $float-depth;
+		@if($float-string-length < 2) {
+			@return $result * -0.1;
+		}@else {
+			@return $result * -0.01;
+		}
+	}@elseif($minus == true) {
+		@return $result * -1;
+	}@elseif($float == true) {
+		$float-string-length: str-length($value) - $float-depth;
+		
+		@if($float-string-length < 2) {
+			@return $result * 0.1;
+		}@else {
+			@return $result * 0.01;
+		}
+	}@else {
+		@return $result;
+	}
+}
+
+// 문자열을 숫자로 변환하는 함수 단축함수명
+@function s-t-n($value) {
+	@return string-to-number($value);
+}

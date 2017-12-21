@@ -1,0 +1,23 @@
+// 미디어쿼리 믹스인
+@mixin breaking(
+  $point,
+  $range: null
+	) {
+      @if(length($point) < 2) {
+        @if($range == 'over') {
+          @media all and ('min-width:' + $point + 'px') {
+            @content;
+          }
+        }@else if($range == 'below') {
+          @media all and ('max-width:' + $point + 'px') {
+            @content;
+          }
+        }@else {
+          @warn '미디어쿼리의 범위 지정인 두번째 인자가 정확하지 않습니다.';
+        }
+      }@else {
+        @media all and ('min-width:' + nth($point, 1) + px) and ('max-width:' + nth($point, 2) + px) {
+          @content;
+        }
+      }
+}

@@ -1,0 +1,28 @@
+// material-icons mixin 설명
+@mixin material-icons-help() {
+    @error 
+    "
+        /*---------------------*\
+
+              material-icons mixin
+                사용 설명
+        \*---------------------*/
+        material-icons mixin
+        @param = {
+            ($font-size,
+            $font-weight)
+        }
+        @property = {
+            font-size,
+            font-weight,
+            ... 등등 그래픽 아이콘을
+            사용하기위한 다수의 css
+        }
+        @description = {
+            material icons를 사용하기 위한 믹스인입니다.
+            기본적으로 placeholder가 존재하지만 미디어 쿼리 내에서
+            정의하고자 할때 대체로 사용합니다.
+            ex) @include material-icons(40px, bolder);
+        }
+    ";
+}

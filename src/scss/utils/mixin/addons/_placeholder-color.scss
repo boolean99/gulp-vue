@@ -1,0 +1,18 @@
+// 서식요소의 placeholder 속성에 대한 글색상을 변경해주는 믹스
+@mixin placeholder($color) {
+  &::-webkit-input-placeholder {
+     color: $color;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+     color: $color;  
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+     color: $color;  
+  }
+
+  &:-ms-input-placeholder {  
+     color: $color;  
+  }
+}

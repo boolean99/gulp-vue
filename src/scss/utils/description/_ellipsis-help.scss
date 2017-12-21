@@ -1,0 +1,31 @@
+// ellipsis mixin 설명
+@mixin ellipsis-help() {
+    @error 
+    "
+        /*---------------------*\
+
+              ellipsis mixin
+                사용 설명
+        \*---------------------*/
+        ellipsis mixin
+        @param = {
+            $width  !default : 100%;
+        }
+        @property = {
+            display:        inline-block;
+            max-width:      $width;
+            overflow:       hidden;
+            text-overflow:  ellipsis;
+            white-space:    nowrap;
+            word-wrap:      normal;
+        }
+        @description = {
+            긴 텍스트의 말 줄임표를 생성해 주는 css 블록을
+            반환하는 믹스인 입니다
+            매개변수로 max-width 값을 지정할수 있는데,
+            기본값 100%로, 사용자 정의시엔 변수 이름을 참조할 필요없이
+            넓이 값만 넣어주면 됩니다
+            ex) ellipsis(50%);
+        }
+    ";
+}

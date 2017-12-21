@@ -1,0 +1,32 @@
+@mixin counter(
+  $depth: false,
+  $content: null
+  ) {
+    counter-reset: list;
+    
+    @if($content == null) {
+      @if ($depth == true) {
+        > *::before {
+          counter-increment: list;
+          content: counters(list, ".");
+        }
+      }@else {
+        > *::before {
+          counter-increment: list;
+          content: counter(list);
+        }
+      }
+    }@else {
+      @if ($depth == true) {
+        > *::before {
+          counter-increment: list;
+          content: counters(list, ".") $content;
+        }
+      }@else {
+        > *::before {
+          counter-increment: list;
+          content: counter(list) $content;
+        }
+      }
+    }
+}

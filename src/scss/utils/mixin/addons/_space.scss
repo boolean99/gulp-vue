@@ -1,0 +1,34 @@
+// padding margin 단축 믹스인
+@mixin space($args...) {
+    @for $i from 1 through length($args) {
+        @if(nth(nth($args,$i),1) == "margin") {
+            margin: {
+                top: nth(nth($args,$i),2);
+
+                @if length(nth($args,$i)) >= 3 {
+                    right:   nth(nth($args,$i),3);
+                }
+                @if length(nth($args,$i)) >= 4 {
+                    bottom:  nth(nth($args,$i),4);
+                }
+                @if length(nth($args,$i)) >= 5 {
+                    left:    nth(nth($args,$i),5);
+                }
+            }
+        } @else if(nth(nth($args,$i),1) == "padding") {
+            padding: {
+                top: nth(nth($args,$i),2);
+
+                @if length(nth($args,$i)) >= 3 {
+                    right:   nth(nth($args,$i),3);
+                }
+                @if length(nth($args,$i)) >= 4 {
+                    bottom:  nth(nth($args,$i),4);
+                }
+                @if length(nth($args,$i)) >= 5 {
+                    left:    nth(nth($args,$i),5);
+                }
+            }
+        }
+    }
+}

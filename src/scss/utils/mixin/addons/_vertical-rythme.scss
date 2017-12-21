@@ -1,0 +1,12 @@
+@mixin vertical-rythme(
+  $font-size,
+  $line-height: null
+  ) {
+    @if($line-height != null) {
+      font-size: $font-size;
+      line-height: $line-height;
+    }@else {
+      font-size: $font-size;
+      line-height: 100%;
+    }
+}

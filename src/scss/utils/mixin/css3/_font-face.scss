@@ -1,0 +1,23 @@
+// 의존형 function 모듈 호출
+@import "../../function/dependence-function/font-src-maker";
+
+// font-face css 믹스인
+@mixin font-face(
+    $font-family,
+    $font-weight:  normal,
+    $font-style:   normal,
+    $file-formats: ttf
+  ) {
+
+    @font-face {
+      font-family: $font-family;
+      font-style:  $font-style;
+      font-weight: $font-weight;
+
+      src: font-src-maker(
+           $font-family,
+           $font-url,
+           $file-formats
+      );
+    }
+}

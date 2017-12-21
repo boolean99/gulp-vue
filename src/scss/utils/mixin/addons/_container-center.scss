@@ -1,0 +1,6 @@
+@mixin container-center($width) {
+	margin: 0 auto;
+	
+	@include size($width, auto);
+	@include clearfix;
+}

@@ -1,0 +1,13 @@
+// 화면 회전을 고정시키는 믹스
+@mixin orientation-lock() {
+  @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+    html {
+      transform: rotate(-90deg);
+      transform-origin: left top;
+      width: 100vh;
+      overflow-x: auto;
+      
+      @include position(100% null null 0);
+    }
+  }
+}

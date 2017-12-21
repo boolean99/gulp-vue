@@ -1,0 +1,37 @@
+// border mixin 설명
+@mixin center-help() {
+    @error 
+    "
+        /*---------------------*\
+
+              center mixin
+                사용 설명
+        \*---------------------*/
+        center mixin
+        @param = {
+            (
+              $horizontal-center
+              $vertical-center
+              $position: absolute, relative
+            )
+        }
+        @property = {
+            position: $position;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            margin-(direction): width / 2 + 'px';
+        }
+        @description = {
+            translateX, Y 를 이용해 수직, 수평 중앙 정렬한다
+            세번째 변수의 기본값은 absolute이며 변경 가능하다.
+            하위 브라우저 대응을 위해 부울값 대신 px 단위를 입력할수있다.
+            ex)   @include center(true);
+                  @include center(false, true);
+                  @include center(true, true, relative);
+                  @include center(200px, 100px, relative);
+                  @include center(200px);
+                  @include center(false, 100px);
+        }
+    ";
+}

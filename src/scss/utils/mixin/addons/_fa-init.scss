@@ -1,0 +1,39 @@
+// 폰트어썸 믹스인
+
+@mixin fa-init(
+  $icon-name,
+  $dir: before,
+  $minor-browser: false
+  ) {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+
+  @if $dir == before {
+    @if $minor-browser == true {
+      &:before {
+        font: normal normal normal #{$fa-font-size-base}/#{$fa-line-height-base} FontAwesome;
+        content: $icon-name;
+      }
+    }@else {
+      &::before {
+        font: normal normal normal #{$fa-font-size-base}/#{$fa-line-height-base} FontAwesome;
+        content: $icon-name;
+      }
+    }
+  }@else {
+    @if $minor-browser == true {
+      &:after {
+        font: normal normal normal #{$fa-font-size-base}/#{$fa-line-height-base} FontAwesome;
+        content: $icon-name;
+      }
+    }@else {
+      &::after {
+        font: normal normal normal #{$fa-font-size-base}/#{$fa-line-height-base} FontAwesome;
+        content: $icon-name;
+      }
+    }
+  }
+}

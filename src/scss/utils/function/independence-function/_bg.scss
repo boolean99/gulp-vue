@@ -1,0 +1,5 @@
+// background의 url을 config에서 정의한 경로변수로 사용
+
+@function bg($file-name) {
+  @return url($css-url + "#{$file-name}");
+}

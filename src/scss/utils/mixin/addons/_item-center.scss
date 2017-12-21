@@ -1,0 +1,30 @@
+// 수직정렬 핵 믹스인
+@mixin item-center(
+    $sort: null
+  ) {
+    
+    @if($sort == 'txt') {
+      display: table;
+      text-align: center;
+
+      > * {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }@else if($sort == 'elm') {
+      text-align: center;
+      
+      &::before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+      }
+      
+      > * {
+        vertical-align: middle;
+      }
+    }@else{
+      @error '$sort 변수의 값이 필요합니다.'
+    }
+}

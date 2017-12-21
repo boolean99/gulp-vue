@@ -1,0 +1,24 @@
+// triangle mixin 설명
+@mixin color-both-help () {
+    @error 
+    "
+        /*---------------------*\
+
+            color-both minxin
+                사용 설명
+        \*---------------------*/
+        color-both css mixin
+        @param = {
+            $color,
+            $background-color
+        }
+        @property = {
+            color: ...;
+            background-color: ...;
+        }
+        @description = {
+            폰트 색상과 배경 색상을 함께 정의하는 믹스인입니다.
+            ex) @include color-both(#fff, #000);
+        }
+    ";
+}

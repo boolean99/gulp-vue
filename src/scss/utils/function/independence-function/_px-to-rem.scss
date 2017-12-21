@@ -1,0 +1,13 @@
+// px 단위를 rem 단위로 변환
+
+@function rem($px-value) {
+  @if not unitless($px-value) {
+    $px-value: unit-elimination($px-value);
+  }
+
+  $base: $em-base;
+  @if not unitless($base) {
+    $base: unit-elimination($base);
+  }
+  @return ($px-value / $base) * 1rem;
+}

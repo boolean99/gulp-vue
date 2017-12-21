@@ -1,0 +1,32 @@
+// 반응형 마진 & 패딩 값 믹스인
+
+@mixin breaking-space(
+  $argus...
+  ) {
+    @for $i from 1 through length($argus) {
+      $unit: %;
+      $_property: nth(nth($argus, $i), 1);
+      $_origin-value: nth(nth($argus, $i), 2);
+      $_container-value: nth(nth($argus, $i), 3);
+      
+      @if $_property == 'font-size' or $_property == 'line-height' {
+        #{$_property}: $_origin-value+px;
+        $unit: 'vw';
+      }
+      
+      #{$_property}: ($_origin-value / $_container-value) * 100#{$unit};
+    }
+}
+
+// 함수형태 지원
+
+@function breaking-space(
+  $argus...
+  ) {
+    @for $i from 1 through length($argus) {
+      $_origin-value: nth(nth($argus, $i), 2);
+      $_container-value: nth(nth($argus, $i), 3);
+      
+      @return ($_origin-value / $_container-value) * 100%;
+    }
+}
