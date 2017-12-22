@@ -74,12 +74,12 @@ $fa-line-height-base: $global-line-height !default;
 // -------------
 // material-icon
 // -------------
-$material-use: true;
+$material-use: false;
 
 // -------------
 // mirror
 // -------------
-$mirror-use:  true;
+$mirror-use:  false;
 $mirror-root: 'html[dir="rtl"]';
 
 // -------------
@@ -89,7 +89,7 @@ $mirror-root: 'html[dir="rtl"]';
 // -------------
 $iphone-scroll: true; // 기본값이 true이며 nomalize.scss 파일에서 overflow-scrolling css를 함께 컴파일 시킨다
 
-$noscript: true; // noscript 태그에 대한 스타일을 정의함
+$noscript: false; // noscript 태그에 대한 스타일을 정의함
 
 // -------------
 // 배포 | 비배포 설정

@@ -2,7 +2,6 @@
   #app
     img(src='images/logo.png')
     h1 {{ msg }}
-    h2 Essential Links
     ul
       li
         a(href='https://vuejs.org', target='_blank') Core Docs

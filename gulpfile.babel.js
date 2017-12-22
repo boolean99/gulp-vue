@@ -24,11 +24,13 @@ import sprite from 'gulp.spritesmith';
 // LOCAL SERVER
 const browserSync = require('browser-sync').create();
 const reload      = browserSync.reload;
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 //[*]+---------------[[ html 파일 복사 ]]---------------+[*]
 gulp.task('file-copy', () => {
   return gulp.src(GLOBALCONFIG.DIRECTION.SRC + '/index.html')
-    .pipe(gulp.dest(GLOBALCONFIG.DIRECTION.DIST + '/'));
+    .pipe(gulp.dest(GLOBALCONFIG.DIRECTION.DIST + '/'))
+    .pipe(reload({stream: true}));
 })
 
 //[*]+---------------[[ html 파일 복사 ]]---------------+[*]
@@ -99,7 +101,8 @@ gulp.task('webpack-compile', () => {
                 require('cssnano')({
                   preset: 'default'
                 })
-              ]
+              ],
+              extractCSS: true
             }
           },
           {
@@ -119,7 +122,10 @@ gulp.task('webpack-compile', () => {
       resolve: {
         alias: {
           'vue$': 'vue/dist/vue.esm.js',
-          'globalSass': path.resolve(__dirname, './src/scss/index.scss')
+          'globalSass': path.resolve(__dirname, './src/scss/index.scss'),
+          'globalPug': path.resolve(__dirname, './src/pug/bundle.pug'),
+          'myPug': './src/pug/',
+          'myPugto': './src/pug/bundle.pug'
         },
         extensions: ['*', '.js', '.vue', '.json']
       },
@@ -138,7 +144,8 @@ gulp.task('webpack-compile', () => {
           uglifyOptions: {
             ecma: 8
           }
-        })
+        }),
+        new ExtractTextPlugin("style.css")
       ]
     }))
     .pipe(gulp.dest(GLOBALCONFIG.DIRECTION.DIST + '/js'))
