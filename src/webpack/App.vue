@@ -1,3 +1,7 @@
+<docs>
+  ## 해당 템플릿에 대한 설명입니다.
+</docs>
+
 <template lang="pug">
   #app
     img(src='images/logo.png')
@@ -22,15 +26,21 @@
       li
         a(href='https://github.com/vuejs/awesome-vue', target='_blank') awesome-vue
     span.test
+    young
 </template>
 
 <script>
+  import young from './test.vue';
+
 export default {
   name: 'app',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  components: {
+    young
   }
 }
 </script>

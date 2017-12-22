@@ -1,5 +1,5 @@
 {
-  "DISTRIBUTION": false,
+  "IF_TRUE_COMPILE_CSS_EXTRACTION_OR_DOCS": false,
   "DIRECTION": {
     "SRC": "src",
     "DIST": "dist",
@@ -8,10 +8,18 @@
     "IMAGE": "/images"
   },
   "SPRITE": {
-    "FILENAME": "room_chat_sprite.png",
-    "DISTFILENAME": "room_chat_sprite.png"
+    "FILENAME": "default_sprite.png",
+    "DISTFILENAME": "default_sprite.png"
   },
   "WEBPACK": {
     "FILENAME": "main"
+  },
+  "EXTRACTION_CSS": {
+    "DIRECTION": "../css/",
+    "FILENAME": "main.css"
+  },
+  "DOCS": {
+    "DIRECTION": "../doc/",
+    "FILENAME": "main.md"
   }
 }
