@@ -1,5 +1,5 @@
 {
-  "IF_TRUE_COMPILE_CSS_EXTRACTION_OR_DOCS": false,
+  "IF_TRUE_COMPILE_CSS_EXTRACTION_OR_DOCS": true,
   "DIRECTION": {
     "SRC": "src",
     "DIST": "dist",

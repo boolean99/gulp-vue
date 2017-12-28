@@ -1,0 +1,7 @@
+// GETTER
+export const HALF_OF_NUMBER = 'HALF_OF_NUMBER';
+
+// ACTION
+
+// MUTATION
+export const INCREMENT = 'INCREMENT';
