@@ -48,8 +48,8 @@ gulp.task('webpack-compile', () => {
           [GLOBALCONFIG.WEBPACK.FILENAME]: `./${GLOBALCONFIG.DIRECTION.SRC}${GLOBALCONFIG.DIRECTION.WEBPACK}/${GLOBALCONFIG.WEBPACK.FILENAME}.js`
         },
         output: {
-          path: path.resolve(__dirname, './dist'),
-          publicPath: '/dist/',
+          path: path.resolve(__dirname, './js/'),
+          publicPath: './js/',
           filename: '[name].build.js'
         },
         module: {

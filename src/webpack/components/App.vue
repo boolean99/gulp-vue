@@ -11,6 +11,13 @@
       @click="globalIncrement"
     ) click here
     p {{ number }} / 2 = {{ HALF_OF_NUMBER }}
+    nav
+      p
+        router-link( to="/" ) go to home
+      p
+        router-link( to="/page") go to page
+    hr
+    router-view
 </template>
 
 <script>
@@ -54,5 +61,14 @@
 
     @include vertical-rythme(40px);
     @include container-center(960px);
+  }
+
+  a {
+    color: darkblue;
+    text-decoration: none;
+  }
+
+  .router-link-exact-active {
+    text-transform: uppercase;
   }
 </style>
