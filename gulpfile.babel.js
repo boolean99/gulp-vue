@@ -58,21 +58,17 @@ gulp.task('webpack-compile', () => {
               test: /\.vue$/,
               loader: 'vue-loader',
               options: {
+                sourceMap: true,
                 loaders: {
                   scss: ExtractTextPlugin.extract({
-                    use: 'css-loader!sass-loader',
-                    fallback: 'vue-style-loader'
+                    fallback: 'vue-style-loader',
+                    use: [
+                      { loader: 'css-loader', options: { sourceMap: true } },
+                      { loader: 'postcss-loader', options: { sourceMap: true } },
+                      { loader: 'sass-loader' }
+                    ]
                   })
-                },
-                postcss: [
-                  require('autoprefixer')(),
-                  require('postcss-sorting')({
-                    'properties-order': 'alphabetical'
-                  }),
-                  require('cssnano')({
-                    preset: 'default'
-                  })
-                ]
+                }
               }
             },
             {
@@ -104,7 +100,7 @@ gulp.task('webpack-compile', () => {
         performance: {
           hints: false
         },
-        devtool: '#eval-source-map',
+        devtool: 'source-map',
         plugins: [
           new UglifyJsPlugin({
             sourceMap: true,
@@ -126,29 +122,6 @@ gulp.task('webpack-compile', () => {
         },
         module: {
           rules: [
-            {
-              test: /\.css$/,
-              use: [
-                'vue-style-loader',
-                'css-loader'
-              ],
-            },
-            {
-              test: /\.scss$/,
-              use: [
-                'vue-style-loader',
-                'css-loader',
-                'sass-loader'
-              ],
-            },
-            {
-              test: /\.sass$/,
-              use: [
-                'vue-style-loader',
-                'css-loader',
-                'sass-loader?indentedSyntax'
-              ],
-            },
             {
               test: /\.vue$/,
               loader: 'vue-loader',
@@ -244,16 +217,16 @@ gulp.task('img-sprite', () => {
       padding: 5 // 스프라이트 이미지 간의 간격 조절
     }));
 
-let imgStream = spriteData.img
-  .pipe(buffer())
-  .pipe(imageMin())
-  .pipe(gulp.dest(GLOBALCONFIG.DIRECTION.DIST + '/images'));
+  let imgStream = spriteData.img
+    .pipe(buffer())
+    .pipe(imageMin())
+    .pipe(gulp.dest(GLOBALCONFIG.DIRECTION.DIST + '/images'));
 
-let cssStream = spriteData.css
-  .pipe(gulp.dest(GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.SCSS + '/components/sprite'))
-  .pipe(reload({stream: true}));
+  let cssStream = spriteData.css
+    .pipe(gulp.dest(GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.SCSS + '/components/sprite'))
+    .pipe(reload({stream: true}));
 
-return merge(imgStream, cssStream);
+  return merge(imgStream, cssStream);
 });
 //[*]+---------------[[ 스프라이트 이미지 생성 ]]---------------+[*]
 
@@ -261,19 +234,19 @@ return merge(imgStream, cssStream);
 //[*]+---------------[[ 로컬서버 실행 후 파일 변경 감지 ]]---------------+[*]
 gulp.task('server-run', () => {
   browserSync.init({
-  server: GLOBALCONFIG.DIRECTION.DIST,
-  ghostMode: {
-    clicks: true,
-    forms: true,
-    scroll: true
-  }
-});
+    server: GLOBALCONFIG.DIRECTION.DIST,
+    ghostMode: {
+      clicks: true,
+      forms: true,
+      scroll: true
+    }
+  });
 
-gulp.watch(GLOBALCONFIG.DIRECTION.SRC + '/index.html', ['file-copy']);
-gulp.watch(GLOBALCONFIG.DIRECTION.SRC + '/scss/**/*.scss', ['webpack-compile']);
-gulp.watch(GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.WEBPACK + '/**/*', ['webpack-compile']);
-gulp.watch([GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.IMAGE + '/!(sprites)*', GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.IMAGE + '/!(sprites)*/**/*'], ['img-min']);
-gulp.watch(GLOBALCONFIG.DIRECTION.IMAGE + 'sprites/*', ['img-sprite']);
+  gulp.watch(GLOBALCONFIG.DIRECTION.SRC + '/index.html', ['file-copy']);
+  gulp.watch(GLOBALCONFIG.DIRECTION.SRC + '/scss/**/*.scss', ['webpack-compile']);
+  gulp.watch(GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.WEBPACK + '/**/*', ['webpack-compile']);
+  gulp.watch([GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.IMAGE + '/!(sprites)*', GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.IMAGE + '/!(sprites)*/**/*'], ['img-min']);
+  gulp.watch(GLOBALCONFIG.DIRECTION.IMAGE + 'sprites/*', ['img-sprite']);
 });
 //[*]+---------------[[ 로컬서버 실행 후 파일 변경 감지 ]]---------------+[*]
 
@@ -284,7 +257,7 @@ gulp.task('build', () => {
     'file-copy',
     ['img-sprite', 'img-min'],
     'webpack-compile'
-);
+  );
 });
 
 gulp.task('default', () => {
@@ -293,6 +266,6 @@ gulp.task('default', () => {
     ['img-sprite', 'img-min'],
     'webpack-compile',
     'server-run'
-);
+  );
 });
 //[*]+---------------[[ GULP 기본, 빌드 명령어 실행 ]]---------------+[*]

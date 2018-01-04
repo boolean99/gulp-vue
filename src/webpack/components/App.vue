@@ -18,12 +18,15 @@
         router-link( to="/page") go to page
     hr
     router-view
+    hr
+    otherComponent
 </template>
 
 <script>
   import { mapMutations } from 'vuex';
   import { mapState } from 'vuex';
   import { mapGetters } from 'vuex';
+  import otherComponent from './OhterComponent';
 
   export default {
     name: 'App',
@@ -47,6 +50,9 @@
           amount: 10
         })
       }
+    },
+    components: {
+      otherComponent
     }
   }
 </script>

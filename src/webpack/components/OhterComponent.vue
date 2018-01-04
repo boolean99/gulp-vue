@@ -13,6 +13,8 @@
   @import "~globalSass";
 
   #other {
-    @extend: %fl;
+    h1 {
+      @extend %fl;
+    }
   }
 </style>
